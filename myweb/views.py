@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from .models import Destination
 from django.contrib.auth.models import User,auth
+from django.contrib import messages
 
 
 def index(request):
@@ -17,9 +18,20 @@ def register(request):
         # phone = request.POST['phone']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-        user = User.objects.create_user(username = username, first_name = first_name, last_name = last_name, email = email, password = password1)
-        user.save();
-        print('user created')
+        if password1==password2:
+            if User.objects.filter(username=username).exits():
+                messages.info(request,'User already taken')
+                return redirect('register')
+            elif User.objects.filter(email=email).exits():
+                messages.info(request,'Email already taken')
+                return redirect('register')
+            else:
+                user = User.objects.create_user(username = username, first_name = first_name, last_name = last_name, email = email, password = password1)
+                user.save();
+                print('user created')
+        else:
+            print('Password do not match')
+            return redirect('register')
         return redirect('/')
     else:
         return render(request,'register.html')
