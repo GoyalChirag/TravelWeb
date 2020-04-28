@@ -5,3 +5,6 @@ from .models import Destination
 def index(request):
     dests=Destination.objects.all()
     return render(request,'index.html',{'dests': dests})
+
+def register(request):
+    return render(request,'register.html')
