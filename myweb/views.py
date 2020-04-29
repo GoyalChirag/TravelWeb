@@ -8,6 +8,10 @@ def index(request):
     dests=Destination.objects.all()
     return render(request,'index.html',{'dests': dests})
 
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+
 def login(request):
     if request.method=='POST':
         username = request.POST['username']
@@ -21,8 +25,6 @@ def login(request):
             return redirect('login')
     else:
         return render(request,'login.html')
-
-
 
 def register(request):
     if request.method=='POST':
