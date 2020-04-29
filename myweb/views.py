@@ -35,10 +35,10 @@ def register(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
         if password1==password2:
-            if User.objects.filter(username=username).exits():
+            if User.objects.filter(username=username).exists():
                 messages.info(request,'User already taken')
                 return redirect('register')
-            elif User.objects.filter(email=email).exits():
+            elif User.objects.filter(email=email).exists():
                 messages.info(request,'Email already taken')
                 return redirect('register')
             else:
