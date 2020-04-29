@@ -8,6 +8,22 @@ def index(request):
     dests=Destination.objects.all()
     return render(request,'index.html',{'dests': dests})
 
+def login(request):
+    if request.method=='POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username,password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect('/')
+        else:
+            print('user does not exist')
+            return redirect('login')
+    else:
+        return render(request,'login.html')
+
+
+
 def register(request):
     if request.method=='POST':
         first_name = request.POST['first_name']
@@ -29,6 +45,7 @@ def register(request):
                 user = User.objects.create_user(username = username, first_name = first_name, last_name = last_name, email = email, password = password1)
                 user.save();
                 print('user created')
+                return redirect('login')
         else:
             print('Password do not match')
             return redirect('register')
