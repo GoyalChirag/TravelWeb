@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(qzt!tutq)&yz*#evp4x-s!9a#i#u-o)bi=0oc@f)23t3stg#3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['travel-web-django.herokuapp.com']
 
 
 # Application definition
