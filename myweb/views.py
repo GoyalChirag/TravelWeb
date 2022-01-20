@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
-from .models import Destination
+from .models import Destination,Newsletter
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 
+def home(request):
+    return redirect('/')
 
 def index(request):
     dests=Destination.objects.all()
@@ -54,3 +56,9 @@ def register(request):
         return redirect('/')
     else:
         return render(request,'register.html')
+
+def subscribe(request):
+    if request.method=='POST':
+        name = request.POST['newsletter_input_name']
+        email = request.POST['newsletter_input_email']
+    return redirect('/')

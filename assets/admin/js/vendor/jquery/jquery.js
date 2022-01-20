@@ -6639,7 +6639,6 @@ jQuery.extend( {
 		"orphans": true,
 		"widows": true,
 		"zIndex": true,
-		"zoom": true
 	},
 
 	// Add in properties whose names you wish to fix before
